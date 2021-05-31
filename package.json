@@ -1,0 +1,26 @@
+{
+  "name": "unisdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "listen": "NETWORK=MAINNET nodemon ./src/listen.js",
+    "sell": "NETWORK=MAINNET node ./src/sell.js",
+    "ropsten": "NETWORK=ROPSTEN nodemon ./src/index.js",
+    "mainnet": "NETWORK=MAINNET nodemon ./src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "@uniswap/sdk": "^3.0.3",
+    "dotenv": "^9.0.2",
+    "ethers": "^5.1.4",
+    "luxon": "^1.27.0",
+    "moment": "^2.29.1",
+    "web3": "^1.3.6",
+    "web3-utils": "^1.3.6"
+  }
+}
