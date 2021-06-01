@@ -1,5 +1,5 @@
 const { ChainId, Fetcher, WETH, Route, Trade, TokenAmount, TradeType, Percent } = require('@uniswap/sdk');
-const environment = require('./environment');
+const environment = require('../config/environment');
 const { DateTime } = require('luxon');
 const ethers = require('ethers');
 const { 
@@ -8,14 +8,15 @@ const {
   account,
   factory,
   router,
-  calculateGas 
-} = require('./setup');
+  // calculateGas 
+} = require('./utils/setup');
 const { 
   buyToken,
   sellToken, 
   logReceipt,
-  calculateAmountOutMin 
-} = require('./tradeHelpers');
+  calculateAmountOutMin,
+  calculateGas 
+} = require('./utils/tradeHelpers');
 
 const config = environment.config;
 const settings = environment.settings;

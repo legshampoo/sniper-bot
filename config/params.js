@@ -13,12 +13,12 @@ module.exports = {
   },
   mainnet: {
     listenerDebug: false,
-    enableTrading: false,
+    enableTrading: true,
     gasLimit: 8000000, //wei?
-    additionalGas: '3',  //gwei
-    slippage: 1,  //percent
+    additionalGas: '50',  //gwei
+    slippage: 10,  //percent
     tokensInETH: '0.0001',
-    numTokensToSell: '13000',
+    numTokensToSell: '100',
     deadlineMinutes: 5
   },
   // listener: {

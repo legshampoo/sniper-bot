@@ -3,8 +3,8 @@ const ethers = require('ethers');
 const web3 = require('web3');
 const Web3Utils = require('web3-utils');
 const moment = require('moment');
-const environment = require('./environment');
-const { sellToken, logReceipt } = require('./tradeHelpers');
+const environment = require('../config/environment');
+const { sellToken, logReceipt } = require('./utils/tradeHelpers');
 
 const config = environment.config;
 const settings = environment.settings;

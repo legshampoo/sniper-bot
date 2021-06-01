@@ -6,8 +6,7 @@
   "scripts": {
     "listen": "NETWORK=MAINNET nodemon ./src/listen.js",
     "sell": "NETWORK=MAINNET node ./src/sell.js",
-    "ropsten": "NETWORK=ROPSTEN nodemon ./src/index.js",
-    "mainnet": "NETWORK=MAINNET nodemon ./src/index.js"
+    "trade": "NETWORK=ROPSTEN nodemon ./src/index.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,12 +1,34 @@
 const ethers = require('ethers');
 const { Percent } = require('@uniswap/sdk');
-const environment = require('./environment');
+const environment = require('../../config/environment');
+const Web3Utils = require('web3-utils');
 const {
   router
 } = require('./setup');
 const config = environment.config;
 const settings = environment.settings;
 
+
+const calculateGas = async (provider, amountIn) => {
+  console.log('calc gas');
+  let gasEstimate = await provider.getGasPrice();
+  const additionalGas = Web3Utils.toWei(settings.additionalGas, 'Gwei')
+  const gasPrice = parseInt(gasEstimate) + parseInt(additionalGas);
+  const value = parseInt(amountIn.toString());
+  console.log('amountIn value to int: ', value);
+  const fundsNeeded = (settings.gasLimit * gasPrice) + value;
+  console.log('Gas Estimate: ', gasEstimate.toString());
+  console.log('Additional Gas: ', additionalGas);
+  console.log('Using Gas Price: ', gasPrice);
+  console.log('Funds Needed: ', fundsNeeded);
+
+  const gas = {
+    gasLimit: settings.gasLimit,
+    gasPrice: gasPrice
+  }
+
+  return gas
+}
 
 const calculateAmountOutMin = async (trade) => {
   console.log('Calculate amountOutMin');
@@ -53,7 +75,14 @@ const buyToken = async (amountIn, amountOutMin, path, wallet, deadline, transact
     receipt.status = 'Trading is disabled, no trade was executed';
   }
  
- return receipt
+//  return receipt
+
+ const result = {
+    transaction: tx,
+    receipt: receipt
+  }
+
+  return result;
 }
 
 const sellToken = async (tokenIn, amountIn, amountOut, settings, router, path, deadline) => {
@@ -131,3 +160,4 @@ exports.buyToken = buyToken;
 exports.sellToken = sellToken;
 exports.logReceipt = logReceipt;
 exports.calculateAmountOutMin = calculateAmountOutMin;
+exports.calculateGas = calculateGas;

@@ -3,23 +3,24 @@ const ethers = require('ethers');
 const { DateTime } = require('luxon');
 const addresses = require('../config/addresses');
 const params = require('../config/params');
+const environment = require('../config/environment');
 const Web3Utils = require('web3-utils');
 // const setup = require('./setup');
-const environment = require('./environment');
 const { 
   provider,
   signer,
   account,
   factory,
   router,
-  calculateGas 
-} = require('./setup');
+  // calculateGas 
+} = require('./utils/setup');
 const { 
   buyToken,
   sellToken, 
   logReceipt,
-  calculateAmountOutMin 
-} = require('./tradeHelpers');
+  calculateAmountOutMin,
+  calculateGas 
+} = require('./utils/tradeHelpers');
 
 const config = environment.config;
 const settings = environment.settings;
@@ -91,7 +92,8 @@ const listen = async (_tokenIn, _tokenOut, _pairAddress) => {
   const amountTokensIn = settings.tokensInETH;
   console.log('amountTokensIn: ', amountTokensIn);
   const amountIn = ethers.utils.parseUnits(amountTokensIn, 'ether');
-  
+  console.log('amountIn: ', amountIn.toString());
+
   const trade = new Trade(route, new TokenAmount(
     tokenIn,
     amountIn
@@ -105,7 +107,7 @@ const listen = async (_tokenIn, _tokenOut, _pairAddress) => {
     tokenOut.address
   ];
 
-  const gas = await calculateGas(provider);
+  const gas = await calculateGas(provider, amountIn);
 
   let transactionSettings = {
     gasLimit: gas.gasLimit,
@@ -118,8 +120,11 @@ const listen = async (_tokenIn, _tokenOut, _pairAddress) => {
   console.log('deadline: ', deadline);
 
   try {
-    const receipt = await buyToken(amountIn, amountOutMin, path, config.wallet, deadline, transactionSettings);
-    console.log('Receipt: ', receipt);
+    const result = await buyToken(amountIn, amountOutMin, path, config.wallet, deadline, transactionSettings);
+    console.log('Receipt: ', result);
+
+    const receiptData = await logReceipt(result.receipt, provider, result.transaction);
+    console.log('receiptData: ', receiptData);
     
   } catch(err) {
     console.log(err);

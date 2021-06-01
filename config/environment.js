@@ -1,5 +1,5 @@
-const addresses = require('../config/addresses');
-const params = require('../config/params');
+const addresses = require('./addresses');
+const params = require('./params');
 
 console.log('CONFIGURATION');
 console.log('process.env.NETWORK: ', process.env.NETWORK);
