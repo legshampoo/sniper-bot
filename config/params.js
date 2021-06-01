@@ -20,15 +20,5 @@ module.exports = {
     tokensInETH: '0.0001',
     numTokensToSell: '100',
     deadlineMinutes: 5
-  },
-  // listener: {
-  //   debugMode: true,
-  //   enableTrading: false,
-  //   gasLimit: 8000000, //wei?
-  //   additionalGas: '10',  //gwei
-  //   slippage: 99,  //percent
-  //   tokensInETH: '0.01',
-  //   numTokensToSell: '1',
-  //   deadlineMinutes: 5
-  // }
+  }
 }
