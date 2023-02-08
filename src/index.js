@@ -135,8 +135,6 @@ const init = async () => {
   
   console.log('-- Begin Transaction --');
   
-  // const block = await provider.block.nonce();
-  // console.log('block: ', block);
   if(settings.sellEth){
     console.log('ETH Transaction');
     try {

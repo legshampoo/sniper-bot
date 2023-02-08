@@ -7,8 +7,7 @@ const {
   signer,
   account,
   factory,
-  router,
-  // calculateGas 
+  router
 } = require('./utils/setup');
 const { 
   buyToken,
@@ -54,7 +53,6 @@ const sell = async () => {
     account
   );
 
-  // console.log('tokIn: ', tokenInContract);
   const tokenOutContract = new ethers.Contract(
     tokenOut.address,
     [
@@ -64,15 +62,11 @@ const sell = async () => {
     account
   );
 
-  // console.log('tokOut: ', tokenOutContract);
-
   const pair = await Fetcher.fetchPairData(
     tokenOut, 
     tokenIn,
     provider
   ); //order doesn't matter
-  
-  // console.log('pair: ', pair);
 
   const route = new Route([pair], tokenIn);  //2nd param (weth) is the input token
   

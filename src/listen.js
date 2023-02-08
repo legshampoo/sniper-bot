@@ -5,14 +5,13 @@ const addresses = require('../config/addresses');
 const params = require('../config/params');
 const environment = require('../config/environment');
 const Web3Utils = require('web3-utils');
-// const setup = require('./setup');
+
 const { 
   provider,
   signer,
   account,
   factory,
   router,
-  // calculateGas 
 } = require('./utils/setup');
 const { 
   buyToken,
@@ -30,8 +29,6 @@ const listen = async (_tokenIn, _tokenOut, _pairAddress) => {
   console.log('-'.repeat(100));
   const now = DateTime.now();
   console.log(now.toLocaleString(DateTime.DATETIME_MED));
-
-  // const weth = WETH[config.chainId];
 
   let token0, token1;
   if(_tokenIn === config.weth){
@@ -78,14 +75,6 @@ const listen = async (_tokenIn, _tokenOut, _pairAddress) => {
   ); //order doesn't matter
 
   console.log('pair: ', pair);
-  // event PairCreated(address indexed token0, address indexed token1, address pair, uint);
-  // event Mint(address indexed sender, uint amount0, uint amount1);
-  // pair.on('Mint', async (address, amount0, amount1) => {
-  //   console.log('on MINT');
-  // })
-  // factory.on('PairCreated', async (token0, token1, pairAddress) => {
-  //   listen(token0, token1, pairAddress);
-  // })
   
   const route = new Route([pair], tokenIn);  //2nd param (weth) is the input token
   

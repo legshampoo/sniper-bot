@@ -28,28 +28,8 @@ const router = new ethers.Contract(
   account
 );
 
-// const calculateGas = async (provider) => {
-//   console.log('calc gas');
-//   let gasEstimate = await provider.getGasPrice();
-//   const additionalGas = Web3Utils.toWei(settings.additionalGas, 'Gwei')
-//   const gasPrice = parseInt(gasEstimate) + parseInt(additionalGas);
-//   const fundsNeeded = settings.gasLimit * gasPrice;
-//   console.log('Gas Estimate: ', gasEstimate.toString());
-//   console.log('Additional Gas: ', additionalGas);
-//   console.log('Using Gas Price: ', gasPrice);
-//   console.log('Funds Needed: ', fundsNeeded);
-
-//   const gas = {
-//     gasLimit: settings.gasLimit,
-//     gasPrice: gasPrice
-//   }
-
-//   return gas
-// }
-
 exports.provider = provider;
 exports.signer = signer;
 exports.account = account;
 exports.factory = factory;
 exports.router = router;
-// exports.calculateGas = calculateGas;
