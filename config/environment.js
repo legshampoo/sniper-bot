@@ -2,7 +2,7 @@ const addresses = require('./addresses');
 const params = require('./params');
 
 console.log('CONFIGURATION');
-console.log('process.env.NETWORK: ', process.env.NETWORK);
+console.log('NETWORK: ', process.env.NETWORK);
 
 let config;
 let settings;
